@@ -1,0 +1,28 @@
+dist: xenial
+
+language: python
+
+python:
+  - 3.6
+
+env:
+  - PIPENV_VERBOSITY=-1
+
+install:
+  - pip install --upgrade pip
+  - pip install -U pipenv
+  - pipenv install --dev -e .
+
+script:
+  - pipenv run python --version
+
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: robertodr
+  password:
+    secure: PoijeiXcncIDr7PcBzMGxaqcvYjAA/brni6l8PONFYo87vs5q686JvRqqb1ObMWYIfB2UBzmtSgeXIL0PKwFWnPys4UMEnR37pIINf2TDoK/8h/UW/HmOuKn3OuDfeLmHMYkRQSs/qGAhM4eTap0mcp/QPgUZvRSt+Wdka682iM6ulihpIIMCB1JJbiTdRi5hUC4fb0qd5AdoHcRd+/4y2NOPflq8MGb6TsoTRWO8UYLcXGlWR9jKQdMg+k9Ddq043OoLEefjp/QgulImGegiIlf+OFqbv8JwjbTjBMb9A9+upryUXUE0Te/gsCXe6c49q2EtrLjtnlmUhw9neR6Wx9RnREJVWyjkJUs12OvFH9fhMJhmDo/v010jVR3R2RDXSZFWC7zoBPbPv9Kz6Z0k9CRU4kXEVk4Px7gXOKQ/Zux23pSR1w+C+BZpfGRsEJuhl7m8YdOo+M1ld9aUsueowXOLKHpDnN7OohruATMAA8fgGgB55zg32SraWnhiIghdypq9ZGzOFSlZqWhjCVJW5UOxj55+L06clZI+F9FJUgArkBxm/gdUYm0DC0appOA15uIfFC5BBOJ3MtGMMQc/wPFhJvePREvvL2QsWTTPuUwcf0pDf/ae82mkK1eCmLnbrdLL6X/+uXhpuGRXaDEWMfddK7FQY2GvFd0ldCV/C0=
+  on:
+    tags: true
+    repo: dev-cafe/parselglossy
+    python: 3.6
